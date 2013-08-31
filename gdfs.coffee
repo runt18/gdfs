@@ -5,6 +5,21 @@ class BrowserFS.File.GDriveFile extends BrowserFS.File.PreloadFile
 
 class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
   constructor: (cb) ->
+    details = {
+      client_id: '555024705616.apps.googleusercontent.com'
+      scope: 'https://www.googleapis.com/auth/drive'
+      immediate: true
+    }
+
+    doAuth = (result) ->
+      if result and not result.error
+        console.log('Authenticated successfully')
+      else
+        details.immediate = false
+        gapi.auth.authorize(details, doAuth)
+
+    gapi.auth.authorize(details, doAuth)
+
     cb(this) if cb
 
   getName: -> 'Google Drive'
