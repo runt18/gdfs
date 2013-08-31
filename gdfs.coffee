@@ -1,13 +1,13 @@
-class BrowserFS.File.TemplateFile extends BrowserFS.File.PreloadFile
+class BrowserFS.File.GDriveFile extends BrowserFS.File.PreloadFile
   sync: (cb) ->
 
   close: (cb) -> @sync(cb)
 
-class BrowserFS.FileSystem.Template extends BrowserFS.FileSystem
+class BrowserFS.FileSystem.GDrive extends BrowserFS.FileSystem
   constructor: (cb) ->
     cb(this) if cb
 
-  getName: -> ''
+  getName: -> 'Google Drive'
 
   @isAvailable: -> true
 
